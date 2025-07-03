@@ -206,7 +206,7 @@ rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value)
 	if (!tree)							/* NULL tree pointer check */
 		return (NULL);
 
-	node = bst_insert(tree, value); 	/* insert into BST */
+	node = bst_insert(tree, value);		/* insert into BST */
 	if (!node)							/* check for failure/duplicate */
 		return (NULL);
 
