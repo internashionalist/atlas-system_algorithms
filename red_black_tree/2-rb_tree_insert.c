@@ -171,3 +171,46 @@ void rebalance_right(rb_tree_t **root, rb_tree_t **z)
 		rotate_left(root, g);				/* rotate left on grandparent */
 	}
 }
+
+/**
+ * rebalance - restore Red‑Black properties after insertion
+ * @root:		double pointer to tree root
+ * @z:			newly inserted node
+ *
+ * Return:		void
+ */
+void rebalance(rb_tree_t **root, rb_tree_t *z)
+{
+	/* loop until root or black parent */
+	while (z != *root && z->parent->color == RED)
+	{
+		if (z->parent == z->parent->parent->left) /* parent is left child */
+			rebalance_left(root, &z);
+		else
+			rebalance_right(root, &z);			/* parent is right child */
+	}
+	(*root)->color = BLACK;						/* root always black */
+}
+
+/**
+ * rb_tree_insert - inserts value into a Red‑Black tree
+ * @tree:		double pointer to root
+ * @value:		value to insert
+ *
+ * Return:		pointer to the created node, or NULL on failure/duplicate
+ */
+rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value)
+{
+	rb_tree_t *node;					/* pointer to new node */
+
+	if (!tree)							/* NULL tree pointer check */
+		return (NULL);
+
+	node = bst_insert(tree, value); 	/* insert into BST */
+	if (!node)							/* check for failure/duplicate */
+		return (NULL);
+
+	rebalance(tree, node);				/* restore Red‑Black properties */
+
+	return (node);						/* return pointer to the new node */
+}
