@@ -7,8 +7,9 @@
 
 /**
  * enum rb_color_e - possible color of a Red-Black tree
- * @RED:		0 -> Red node
- * @BLACK:		1 -> Black node
+ * @RED:			0 -> Red node
+ * @BLACK:			1 -> Black node
+ * @DOUBLE_BLACK:	2 -> Double Black node (used during deletion)
  */
 typedef enum rb_color_e
 {
@@ -19,11 +20,11 @@ typedef enum rb_color_e
 
 /**
  * struct rb_tree_s - Red-Black tree node structure
- * @n:			integer stored in the node
- * @parent:		pointer to the parent node
- * @left:		pointer to the left child node
- * @right:		pointer to the right child node
- * @color:		color of the node (RED or BLACK)
+ * @n:				integer stored in the node
+ * @parent:			pointer to the parent node
+ * @left:			pointer to the left child node
+ * @right:			pointer to the right child node
+ * @color:			color of the node (RED or BLACK)
  */
 typedef struct rb_tree_s
 {
