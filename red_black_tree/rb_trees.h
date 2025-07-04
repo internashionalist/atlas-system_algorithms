@@ -48,4 +48,6 @@ void rebalance_left(rb_tree_t **root, rb_tree_t **z);
 void rebalance_right(rb_tree_t **root, rb_tree_t **z);
 void rebalance(rb_tree_t **root, rb_tree_t *z);
 
+rb_tree_t *array_to_rb_tree(int *array, size_t size);
+
 #endif /* RB_TREES_H */
