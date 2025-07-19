@@ -68,4 +68,9 @@ typedef struct graph_s
 	vertex_t *vertices;
 } graph_t;
 
+/* PROTOTYPES */
+
+void graph_display(const graph_t *graph);
+graph_t *graph_create(void);
+
 #endif /* GRAPHS_H */
