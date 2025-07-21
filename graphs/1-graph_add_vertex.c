@@ -14,17 +14,14 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 
 	if (!graph || !str)
 		return (NULL);
-
 	/* check for existing vertex */
 	for (i = graph->vertices; i; i = i->next)
 		if (strcmp(i->content, str) == 0)
 			return (NULL);
-
 	/* allocate memory for new vertex */
 	new_vertex = malloc(sizeof(*new_vertex));
 	if (!new_vertex)
 		return (NULL);
-
 	/* duplicate string -> store in new vertex */
 	new_vertex->content = strdup(str);
 	if (!new_vertex->content)
@@ -32,17 +29,14 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 		free(new_vertex);
 		return (NULL);
 	}
-
 	/* init vertex fields */
 	new_vertex->index = graph->nb_vertices;
 	new_vertex->nb_edges = 0;
 	new_vertex->edges = NULL;
 	new_vertex->next = NULL;
-
 	/* if graph is empty */
 	if (!graph->vertices)
 		graph->vertices = new_vertex;
-
 	/* otherwise, add to the end of the adjacency linked list */
 	else
 	{
@@ -51,10 +45,8 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 			i = i->next;
 		i->next = new_vertex;
 	}
-
 	/* increment vertex count */
 	graph->nb_vertices++;
-
 	/* ptr to new vertex */
 	return (new_vertex);
 }
