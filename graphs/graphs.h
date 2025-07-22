@@ -71,11 +71,16 @@ typedef struct graph_s
 /* PROTOTYPES */
 
 void graph_display(const graph_t *graph);
+
 graph_t *graph_create(void);
+
 vertex_t *graph_add_vertex(graph_t *graph, const char *str);
+
 int graph_add_edge(
 	graph_t *graph, const char *src, const char *dest, edge_type_t type);
 void append_edge(vertex_t *vert_list, edge_t *edge_node);
 edge_t *create_edge(vertex_t *dest_vert);
+
+void graph_delete(graph_t *graph);
 
 #endif /* GRAPHS_H */
