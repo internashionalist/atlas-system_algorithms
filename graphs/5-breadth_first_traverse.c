@@ -17,9 +17,6 @@ size_t breadth_first_traverse(const graph_t *graph,
 	size_t front = 0, back = 0, max_depth = 0;	/* indices and max depth */
 	edge_t *e;									/* edge iterator */
 
-	if (!action || !graph || graph->nb_vertices == 0)
-		return (0);
-
 	start = graph->vertices;					/* get first vertex */
 	queue = malloc(sizeof(*queue) * graph->nb_vertices);
 	depth = malloc(sizeof(*depth) * graph->nb_vertices);
@@ -34,12 +31,11 @@ size_t breadth_first_traverse(const graph_t *graph,
 	{
 		vertex_t *v = queue[front];				/* current vertex */
 		size_t d = depth[front];				/* current vertex depth */
-		front++;								/* increment front index */
 
+		front++;								/* increment front index */
 		action(v, d);					/* call action on current vertex */
 		if (d > max_depth)					/* update max depth if needed */
 			max_depth = d;
-
 		e = v->edges;			/* iterate through edges of current vertex */
 		while (e != NULL)
 		{
@@ -53,7 +49,6 @@ size_t breadth_first_traverse(const graph_t *graph,
 			e = e->next;						/* move to next edge */
 		}
 	}
-
 	free(queue);
 	free(depth);
 	free(visited);
