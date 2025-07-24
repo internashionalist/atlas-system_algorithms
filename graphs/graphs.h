@@ -89,4 +89,7 @@ void recurse_depth_first(const vertex_t *curr_vert, size_t curr_depth,
 size_t depth_first_traverse(
 	const graph_t *graph, void (*action)(const vertex_t *v, size_t depth));
 
+size_t breadth_first_traverse(
+	const graph_t *graph, void (*action)(const vertex_t *v, size_t depth));
+
 #endif /* GRAPHS_H */
