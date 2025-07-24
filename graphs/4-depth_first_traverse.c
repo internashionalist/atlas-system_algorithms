@@ -46,9 +46,9 @@ void recurse_depth_first(const vertex_t *curr_vert, size_t curr_depth,
 size_t depth_first_traverse(const graph_t *graph,
 							void (*action)(const vertex_t *v, size_t depth))
 {
-	size_t max_depth = 0;            			/* max depth encountered */
-	char *visited = NULL;            			/* visited flags */
-	vertex_t *start = NULL;          			/* first vertex */
+	size_t max_depth = 0;						/* max depth encountered */
+	char *visited = NULL;						/* visited flags */
+	vertex_t *start = NULL;						/* first vertex */
 
 	/* NULL checks, vertices must exist */
 	if (!graph || !action || graph->nb_vertices == 0)
