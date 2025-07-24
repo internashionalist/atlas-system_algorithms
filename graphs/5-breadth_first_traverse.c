@@ -20,6 +20,7 @@ size_t breadth_first_traverse(const graph_t *graph,
 	if (!action || !graph || graph->nb_vertices == 0)
 		return (0);
 
+	start = graph->vertices;					/* get first vertex */
 	queue = malloc(sizeof(*queue) * graph->nb_vertices);
 	depth = malloc(sizeof(*depth) * graph->nb_vertices);
 	visited = calloc(graph->nb_vertices, 1);
