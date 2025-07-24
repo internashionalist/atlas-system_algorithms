@@ -83,4 +83,10 @@ edge_t *create_edge(vertex_t *dest_vert);
 
 void graph_delete(graph_t *graph);
 
+void recurse_depth_first(const vertex_t *curr_vert, size_t curr_depth,
+	void (*callback)(const vertex_t *, size_t),
+	size_t *max_depth, char *visited_array);
+size_t depth_first_traverse(
+	const graph_t *graph, void (*action)(const vertex_t *v, size_t depth));
+
 #endif /* GRAPHS_H */
