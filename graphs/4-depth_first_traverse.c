@@ -72,5 +72,5 @@ size_t depth_first_traverse(const graph_t *graph,
 	recurse_depth_first(start, 0, action, &max_depth, visited);
 	free(visited);
 
-	return (max_depth);							
+	return (max_depth);							/* return max depth found */
 }
