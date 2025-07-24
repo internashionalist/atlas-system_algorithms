@@ -91,5 +91,8 @@ size_t depth_first_traverse(
 
 size_t breadth_first_traverse(
 	const graph_t *graph, void (*action)(const vertex_t *v, size_t depth));
+void bfs_loop(vertex_t **queue, size_t *depth, char *visited,
+	size_t *front, size_t *back, size_t *max_depth,
+	void (*action)(const vertex_t *, size_t));
 
 #endif /* GRAPHS_H */
