@@ -4,7 +4,6 @@
  * heap_create -	creates a Heap data structure
  * @data_cmp:		pointer to a comparison function that compares
  *					two nodes' data
- * @void:			pointers to the nodes' data to be compared
  *
  * Return:			pointer to the newly created heap_t structure
  *					or NULL on failure
