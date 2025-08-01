@@ -64,8 +64,7 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 	if (!heap || !data)
 		return (NULL);
 
-	/* if heap is empty, create root node */
-	if (!heap->root)
+	if (!heap->root)					/* if heap is empty, create root */
 	{
 		new_node = binary_tree_node(NULL, data);
 		if (!new_node)
@@ -75,33 +74,28 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 		return (new_node);
 	}
 
-	/* create new node, find parent*/
-	new_index = heap->size + 1;
-	parent = find_parent(heap, new_index);
+	new_index = heap->size + 1;				/* calculate index of new node */
+	parent = find_parent(heap, new_index);	/* find parent */
 	if (!parent)
 		return (NULL);
 
-	/* link new node to parent */
-	new_node = binary_tree_node(parent, data);
+	new_node = binary_tree_node(parent, data);	/* link new node to parent */
 	if (!new_node)
 		return (NULL);
 
-	if (new_index & 1)					/* odd index => right child */
+	if (new_index & 1)						/* odd index => right child */
 		parent->right = new_node;
-	else								/* even index => left child */
+	else									/* even index => left child */
 		parent->left = new_node;
 
-	/* update heap size */
-	heap->size++;
+	heap->size++;							/* update heap size */
 
-	/* restore heap property by bubbling up */
-	while (new_node->parent &&
+	while (new_node->parent &&				/* bubble up if necessary */
 		   heap->data_cmp(new_node->data, new_node->parent->data) < 0)
 	{
 		swap_pointers(new_node, new_node->parent);
 		new_node = new_node->parent;
 	}
 
-	/* return the newly created node */
 	return (new_node);
 }
