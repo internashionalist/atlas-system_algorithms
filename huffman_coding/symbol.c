@@ -9,7 +9,7 @@
  */
 symbol_t *symbol_create(char data, size_t freq)
 {
-	symbol_t *s;				/* point to symbol structure */
+	symbol_t *s;				/* pointer to symbol structure */
 
 	s = malloc(sizeof(*s));		/* allocate memory for symbol */
 	if (s == NULL)
