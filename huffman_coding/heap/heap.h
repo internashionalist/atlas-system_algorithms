@@ -37,7 +37,21 @@ typedef struct heap_s
 } heap_t;
 
 /* PROTOTYPES */
+
+/* Task 0 */
 heap_t *heap_create(int (*data_cmp)(void *, void *));
+
+/* Task 1 */
 binary_tree_node_t *binary_tree_node(binary_tree_node_t *parent, void *data);
+
+/* Task 2 */
+binary_tree_node_t *heap_insert(heap_t *heap, void *data);
+binary_tree_node_t *find_parent(const heap_t *heap, size_t index);
+void swap_pointers(binary_tree_node_t *a, binary_tree_node_t *b);
+
+	/* Task 3 */
+void *heap_extract(heap_t *heap);
+void descend(binary_tree_node_t *node, int (*cmp)(void *, void *));
+binary_tree_node_t *locate_last(const heap_t *heap);
 
 #endif /* _HEAP_H_ */
