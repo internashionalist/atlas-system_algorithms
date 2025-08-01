@@ -1,7 +1,7 @@
 #include "heap.h"
 
 /**
- * descend - 		restores min‑heap order starting at given node using
+ * descend -		restores min‑heap order starting at given node using
  *					bubble‑down method
  * @node:			subtree root to descend from
  * @cmp:			comparison between two data pointers
