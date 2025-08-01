@@ -49,9 +49,12 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data);
 binary_tree_node_t *find_parent(const heap_t *heap, size_t index);
 void swap_pointers(binary_tree_node_t *a, binary_tree_node_t *b);
 
-	/* Task 3 */
+/* Task 3 */
 void *heap_extract(heap_t *heap);
 void descend(binary_tree_node_t *node, int (*cmp)(void *, void *));
 binary_tree_node_t *locate_last(const heap_t *heap);
+
+/* Task 4 */
+void heap_delete(heap_t *heap, void (*free_data)(void *));
 
 #endif /* _HEAP_H_ */
