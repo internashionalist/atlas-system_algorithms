@@ -15,8 +15,9 @@ static void free_subtree(binary_tree_node_t *node, void (*free_data)(void *))
 	free_subtree(node->left, free_data);	/* free left subtree */
 	free_subtree(node->right, free_data);	/* free right subtree */
 
-	free_data(node->data);					/* free node data */
-	free(node);								/* free node itself */
+	if (free_data)					/* free node data if function provided */
+		free_data(node->data);
+	free(node);								/* free the node itself */
 }
 
 /**
