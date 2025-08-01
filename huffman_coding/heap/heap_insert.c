@@ -50,11 +50,11 @@ binary_tree_node_t *find_parent(const heap_t *heap, size_t index)
 }
 
  /**
- * heap_insert -	inserts a value into a min binary heap
- * @heap:			pointer to heap
- * @data:			pointer to data to insert
+ * heap_insert - inserts a value into a min binary heap
+ * @heap: pointer to heap
+ * @data: pointer to data to insert
  *
- * Return:			pointer to the newly created node or NULL on failure
+ * Return: pointer to the newly created node or NULL on failure
  */
 binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 {
