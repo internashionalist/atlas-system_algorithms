@@ -7,7 +7,7 @@
  *
  * Return:			void
  */
-static void free_subtree(binary_tree_node_t *node, void (*free_data)(void *))
+void free_subtree(binary_tree_node_t *node, void (*free_data)(void *))
 {
 	if (!node)								/* NULL check */
 		return;
