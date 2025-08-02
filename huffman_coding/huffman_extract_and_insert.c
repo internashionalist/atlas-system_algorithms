@@ -9,9 +9,7 @@
  */
 int huffman_extract_and_insert(heap_t *priority_queue)
 {
-	binary_tree_node_t *left;				/* left child */
-	binary_tree_node_t *right;				/* right child */
-	binary_tree_node_t *parent;				/* parent */
+	binary_tree_node_t *left, *right, *parent;	/* nodes */
 	symbol_t *sl, *sr, *sp;					/* respective symbols */
 
 	if (!priority_queue || priority_queue->size < 2)
