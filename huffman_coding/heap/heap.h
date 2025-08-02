@@ -58,7 +58,4 @@ binary_tree_node_t *locate_last(const heap_t *heap);
 void heap_delete(heap_t *heap, void (*free_data)(void *));
 void free_subtree(binary_tree_node_t *node, void (*free_data)(void *));
 
-/* Task 5 */
-
-
 #endif /* _HEAP_H_ */

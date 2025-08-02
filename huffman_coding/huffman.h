@@ -16,7 +16,11 @@ typedef struct symbol_s
 } symbol_t;
 
 /* PROTOTYPES */
+
+/* Task 5 */
 symbol_t *symbol_create(char data, size_t freq);
+
+/* Task 6 */
 heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size);
 int huffman_extract_and_insert(heap_t *priority_queue);
 binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size);
