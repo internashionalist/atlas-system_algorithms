@@ -7,3 +7,6 @@ heap_extract
 heap_insert
 symbol_create
 prio
+extract
+huffman_tree
+huffman_codes
