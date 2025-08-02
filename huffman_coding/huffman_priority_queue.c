@@ -13,22 +13,22 @@
  */
 static int compare_freq(void *p1, void *p2)
 {
-    binary_tree_node_t *n1;				/* first node */
-    binary_tree_node_t *n2;				/* second node */
-    symbol_t *s1;						/* first symbol */
-    symbol_t *s2;						/* second symbol */
-    int f1;								/* first frequency */
-    int f2;								/* second frequency */
+	binary_tree_node_t *n1;				/* first node */
+	binary_tree_node_t *n2;				/* second node */
+	symbol_t *s1;						/* first symbol */
+	symbol_t *s2;						/* second symbol */
+	int f1;								/* first frequency */
+	int f2;								/* second frequency */
 
-    n1 = (binary_tree_node_t *)p1;		/* cast first pointer to node */
-    n2 = (binary_tree_node_t *)p2;		/* cast second pointer to node */
-    s1 = (symbol_t *)n1->data;			/* get first symbol from node */
-    s2 = (symbol_t *)n2->data;			/* get second symbol from node */
+	n1 = (binary_tree_node_t *)p1;		/* cast first pointer to node */
+	n2 = (binary_tree_node_t *)p2;		/* cast second pointer to node */
+	s1 = (symbol_t *)n1->data;			/* get first symbol from node */
+	s2 = (symbol_t *)n2->data;			/* get second symbol from node */
 
-    f1 = (int)s1->freq;					/* get first frequency */
-    f2 = (int)s2->freq;					/* get second frequency */
+	f1 = (int)s1->freq;					/* get first frequency */
+	f2 = (int)s2->freq;					/* get second frequency */
 
-    return (f1 - f2);					/* return difference of frequencies */
+	return (f1 - f2);					/* return difference of frequencies */
 }
 
 /**
