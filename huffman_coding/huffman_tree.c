@@ -29,13 +29,14 @@ binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size)
 	{
 		/* extract two minimums and insert their parent */
 		if (!huffman_extract_and_insert(pq))
+		{
+			heap_delete(pq, NULL);
 			return (NULL);
+		}
 	}
 
 	/* get the root of the Huffman tree */
-	root = NULL;
-	if (pq->root)
-		root = (binary_tree_node_t *)pq->root->data;
+	root = (binary_tree_node_t *)heap_extract(pq);
 
 	/* clean up */
 	heap_delete(pq, NULL);
