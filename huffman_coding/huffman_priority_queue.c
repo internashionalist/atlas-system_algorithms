@@ -7,28 +7,49 @@
  * @p1:				first pointer (to node)
  * @p2:				second pointer (to node)
  *
- * Return:			positive if first frequency is greater,
- *					negative if second frequency is greater,
- *					zero if they are equal
+ * Return:			-1 if first < second, 0 if equal, 1 if first > second
  */
 static int compare_freq(void *p1, void *p2)
 {
-	binary_tree_node_t *n1;				/* first node */
-	binary_tree_node_t *n2;				/* second node */
-	symbol_t *s1;						/* first symbol */
-	symbol_t *s2;						/* second symbol */
-	int f1;								/* first frequency */
-	int f2;								/* second frequency */
+    binary_tree_node_t *n1, *n2;		/* pointers to nodes */
+    symbol_t *s1, *s2;					/* pointers to symbols */
+    size_t f1, f2;						/* frequencies of symbols */
 
-	n1 = (binary_tree_node_t *)p1;		/* cast first pointer to node */
-	n2 = (binary_tree_node_t *)p2;		/* cast second pointer to node */
-	s1 = (symbol_t *)n1->data;			/* get first symbol from node */
-	s2 = (symbol_t *)n2->data;			/* get second symbol from node */
+    n1 = (binary_tree_node_t *)p1;		/* cast pointers to nodes */
+    n2 = (binary_tree_node_t *)p2;
 
-	f1 = (int)s1->freq;					/* get first frequency */
-	f2 = (int)s2->freq;					/* get second frequency */
+    if (!n1 && !n2)
+        return (0);
+    if (!n1)
+        return (-1);
+    if (!n2)
+        return (1);
 
-	return (f1 - f2);					/* return difference of frequencies */
+    s1 = (symbol_t *)n1->data;			/* cast node data to symbols */
+    s2 = (symbol_t *)n2->data;
+    f1 = s1 ? s1->freq : 0;				/* get frequencies */
+    f2 = s2 ? s2->freq : 0;
+
+    if (f1 < f2)						/* compare frequencies */
+        return (-1);
+    else if (f1 > f2)
+        return (1);
+
+    if (s1 && s2)						/* tie-break by character */
+    {
+        int c1 = (unsigned char)s1->data;
+        int c2 = (unsigned char)s2->data;
+        if (c1 < c2)
+            return (-1);
+        else if (c1 > c2)
+            return (1);
+    }
+    else if (!s1 && s2)					/* NULL = > */
+        return (-1);
+    else if (s1 && !s2)
+        return (1);
+
+    return (0);
 }
 
 /**
@@ -68,7 +89,7 @@ heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size)
 			heap_delete(heap, NULL);
 			return (NULL);
 		}
-		if (!heap_insert(heap, nested))		/* insert nested node */
+		if (!heap_insert(heap, nested))			/* insert nested node */
 		{
 			free(nested);
 			free(sym);
