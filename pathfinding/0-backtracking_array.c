@@ -87,10 +87,10 @@ int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
 	if (!ok(x, y, rows, cols))					/* cell bounds check */
 		return 0;
 
-	printf("Checking coordinates [%d, %d]\n", x, y);
-
 	if (map[y][x] != '0' || vis[y][x])			/* cell validity check */
 		return 0;
+
+	printf("Checking coordinates [%d, %d]\n", x, y);
 
 	vis[y][x] = 1;
 
