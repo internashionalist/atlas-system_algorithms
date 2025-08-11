@@ -174,7 +174,8 @@ void free_vis(char **vis, int rows)
 queue_t *backtracking_array(char **map, int rows, int cols,
 							point_t const *start, point_t const *target)
 {
-	queue_t *q; char **vis;						/* queue and visited cells */
+	queue_t *q;									/* queue */
+	char **vis;									/* visited cells */
 
 	if (!map || !start || !target || rows <= 0 || cols <= 0)
 		return (NULL);
