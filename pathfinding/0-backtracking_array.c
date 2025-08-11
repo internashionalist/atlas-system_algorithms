@@ -28,8 +28,9 @@ int ok(int x, int y, int rows, int cols)
  *
  * Return:		1 if target is found, 0 otherwise
  */
-int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
-		char **vis, queue_t *q)
+int dfs_array(
+	char **map, int rows, int cols, int x, int y, int tx,
+	int ty, char **vis, queue_t *q)
 {
 	point_t *pt;							/* current point */
 
