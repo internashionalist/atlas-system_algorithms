@@ -16,7 +16,7 @@ int ok(int x, int y, int rows, int cols)
 
 /**
  * push_point -	allocates and pushes a point to the front of the queue
- * @q: 			pointer to the queue
+ * @q:			pointer to the queue
  * @x:			X coordinate of the point
  * @y:			Y coordinate of the point
  *
@@ -27,14 +27,14 @@ int push_point(queue_t *q, int x, int y)
 	point_t *pt = malloc(sizeof(*pt));		/* memory for point */
 
 	if (!pt)
-		return 0;
+		return (0);
 	pt->x = x;								/* set x coordinate */
 	pt->y = y;								/* set y coordinate */
 
 	if (!queue_push_front(q, pt))			/* push to queue */
 	{
 		free(pt);
-		return 0;
+		return (0);
 	}
 
 	return (1);								/* success */
@@ -60,13 +60,13 @@ int dfs_dirs(
 {
 	/* try neighbors in order RIGHT, BOTTOM, LEFT, TOP */
 	if (dfs(map, rows, cols, x + 1, y, tx, ty, vis, q))
-		return 1;
+		return (1);
 	if (dfs(map, rows, cols, x, y + 1, tx, ty, vis, q))
-		return 1;
+		return (1);
 	if (dfs(map, rows, cols, x - 1, y, tx, ty, vis, q))
-		return 1;
+		return (1);
 	if (dfs(map, rows, cols, x, y - 1, tx, ty, vis, q))
-		return 1;
+		return (1);
 
 	/* no valid neighbors found */
 	return (0);
@@ -90,10 +90,10 @@ int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
 		char **vis, queue_t *q)
 {
 	if (!ok(x, y, rows, cols))					/* cell bounds check */
-		return 0;
+		return (0);
 
 	if (map[y][x] != '0' || vis[y][x])			/* cell validity check */
-		return 0;
+		return (0);
 
 	printf("Checking coordinates [%d, %d]\n", x, y);
 
@@ -103,10 +103,10 @@ int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
 		return push_point(q, x, y);
 
 	if (!dfs_dirs(map, rows, cols, x, y, tx, ty, vis, q))	/* neighbors */
-		return 0;
+		return (0);
 
 	if (!push_point(q, x, y))					/* push current point */
-		return 0;
+		return (0);
 
 	return (1);									/* success */
 }
@@ -124,7 +124,7 @@ char **alloc_vis(int rows, int cols)
 
 	vis = malloc(sizeof(*vis) * rows);			/* allocate row pointers */
 	if (!vis)
-		return NULL;
+		return (NULL);
 
 	for (r = 0; r < rows; r++)					/* allocate column pointers */
 	{
@@ -132,7 +132,7 @@ char **alloc_vis(int rows, int cols)
 		if (!vis[r])
 		{
 			free_vis(vis, r);
-			return NULL;
+			return (NULL);
 		}
 	}
 
@@ -143,6 +143,8 @@ char **alloc_vis(int rows, int cols)
  * free_vis -	frees the allocated memory for visited cells
  * @vis:		2D array of visited cells
  * @rows:		number of rows
+ *
+ * Return:		void
  */
 void free_vis(char **vis, int rows)
 {
@@ -174,17 +176,17 @@ queue_t *backtracking_array(char **map, int rows, int cols,
 	queue_t *q; char **vis;						/* queue and visited cells */
 
 	if (!map || !start || !target || rows <= 0 || cols <= 0)
-		return NULL;
+		return (NULL);
 
 	q = queue_create();							/* create the queue */
 	if (!q)
-		return NULL;
+		return (NULL);
 
 	vis = alloc_vis(rows, cols);				/* allocate visited cells */
 	if (!vis)
 	{
 		queue_delete(q);
-		return NULL;
+		return (NULL);
 	}
 
 	if (!dfs(map, rows, cols, start->x, start->y,
