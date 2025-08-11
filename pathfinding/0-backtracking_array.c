@@ -15,64 +15,6 @@ int ok(int x, int y, int rows, int cols)
 }
 
 /**
- * push_point -	allocates and pushes a point to the front of the queue
- * @q:			pointer to the queue
- * @x:			X coordinate of the point
- * @y:			Y coordinate of the point
- *
- * Return:		1 on success, 0 on failure
- */
-int push_point(queue_t *q, int x, int y)
-{
-	point_t *pt = malloc(sizeof(*pt));		/* memory for point */
-
-	if (!pt)
-		return (0);
-	pt->x = x;								/* set x coordinate */
-	pt->y = y;								/* set y coordinate */
-
-	if (!queue_push_front(q, pt))			/* push to queue */
-	{
-		free(pt);
-		return (0);
-	}
-
-	return (1);								/* success */
-}
-
-/**
- * dfs_dirs -	tries to find the target using DFS in all 4 directions
- * @map:		the map
- * @rows:		number of rows in the map
- * @cols:		number of columns in the map
- * @x:			current x coordinate
- * @y:			current y coordinate
- * @tx:			target x coordinate
- * @ty:			target y coordinate
- * @vis:		visited cells
- * @q:			queue for the path
- *
- * Return:		1 if target is found, 0 otherwise
- */
-int dfs_dirs(
-	char **map, int rows, int cols, int x, int y,
-	int tx, int ty, char **vis, queue_t *q)
-{
-	/* try neighbors in order RIGHT, BOTTOM, LEFT, TOP */
-	if (dfs(map, rows, cols, x + 1, y, tx, ty, vis, q))
-		return (1);
-	if (dfs(map, rows, cols, x, y + 1, tx, ty, vis, q))
-		return (1);
-	if (dfs(map, rows, cols, x - 1, y, tx, ty, vis, q))
-		return (1);
-	if (dfs(map, rows, cols, x, y - 1, tx, ty, vis, q))
-		return (1);
-
-	/* no valid neighbors found */
-	return (0);
-}
-
-/**
  * dfs -		recursive DFS function to find the target
  * @map:		the map
  * @rows:		number of rows in the map
@@ -89,26 +31,53 @@ int dfs_dirs(
 int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
 		char **vis, queue_t *q)
 {
-	if (!ok(x, y, rows, cols))					/* cell bounds check */
-		return (0);
+	point_t *pt;							/* current point */
 
-	if (map[y][x] != '0' || vis[y][x])			/* cell validity check */
-		return (0);
+	if (!ok(x, y, rows, cols))				/* check bounds */
+        return (0);
 
-	printf("Checking coordinates [%d, %d]\n", x, y);
+    if (map[y][x] != '0' || vis[y][x])		/* check if cell is valid */
+        return (0);
 
-	vis[y][x] = 1;
+    printf("Checking coordinates [%d, %d]\n", x, y);
+    vis[y][x] = 1;							/* mark as visited */
 
-	if (x == tx && y == ty)						/* found target */
-		return (push_point(q, x, y));
+	if (x == tx && y == ty)					/* check if target is reached */
+	{
+		pt = malloc(sizeof(*pt));
+		if (!pt)
+			return (0);
+		pt->x = x;							/* set x coordinate */
+		pt->y = y;							/* set y coordinate */
+		if (!queue_push_front(q, pt))		/* push point to queue */
+		{
+			free(pt);
+			return (0);
+		}
 
-	if (!dfs_dirs(map, rows, cols, x, y, tx, ty, vis, q))	/* neighbors */
-		return (0);
+		return (1);							/* target found */
+	}
 
-	if (!push_point(q, x, y))					/* push current point */
-		return (0);
+	/* explore neighbors in all four directions */
+	if (dfs(map, rows, cols, x + 1, y, tx, ty, vis, q) ||
+		dfs(map, rows, cols, x, y + 1, tx, ty, vis, q) ||
+		dfs(map, rows, cols, x - 1, y, tx, ty, vis, q) ||
+		dfs(map, rows, cols, x, y - 1, tx, ty, vis, q))
+	{
+		pt = malloc(sizeof(*pt));
+		if (!pt)
+			return (0);
+		pt->x = x;
+		pt->y = y;
+		if (!queue_push_front(q, pt))
+		{
+			free(pt);
+			return (0);
+		}
+		return (1);
+	}
 
-	return (1);									/* success */
+	return (0);								/* target not found */
 }
 
 /**
