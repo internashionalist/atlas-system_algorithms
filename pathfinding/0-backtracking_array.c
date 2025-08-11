@@ -60,8 +60,6 @@ int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
 		dfs(map, rows, cols, x, y - 1, tx, ty, vis, q))
 	{
 		pt = malloc(sizeof(*pt));
-		if (!pt)
-			return (0);
 		pt->x = x;
 		pt->y = y;
 		if (!queue_push_front(q, pt))
