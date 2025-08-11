@@ -3,10 +3,10 @@
 
 /**
  * dfs_graph -	recursive backtracking on graph vertices
- * v:		current vertex
- * target:	target vertex
- * visited:	visited vertices
- * q:		queue for the path
+ * @v:		current vertex
+ * @target:	target vertex
+ * @visited:	visited vertices
+ * @q:		queue for the path
  *
  * Return:	1 if target is found, 0 otherwise
  */
