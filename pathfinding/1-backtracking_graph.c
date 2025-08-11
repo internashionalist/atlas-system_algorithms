@@ -2,7 +2,7 @@
 #include "pathfinding.h"
 
 /**
- * dfs -	recursive backtracking on graph vertices
+ * dfs_graph -	recursive backtracking on graph vertices
  * v:		current vertex
  * target:	target vertex
  * visited:	visited vertices
