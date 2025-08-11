@@ -100,7 +100,7 @@ int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
 	vis[y][x] = 1;
 
 	if (x == tx && y == ty)						/* found target */
-		return push_point(q, x, y);
+		return (push_point(q, x, y));
 
 	if (!dfs_dirs(map, rows, cols, x, y, tx, ty, vis, q))	/* neighbors */
 		return (0);
@@ -120,7 +120,8 @@ int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
  */
 char **alloc_vis(int rows, int cols)
 {
-	char **vis = NULL; int r;					/* visited cells */
+	char **vis = NULL;							/* visited cells */
+	int r;										/* row index */
 
 	vis = malloc(sizeof(*vis) * rows);			/* allocate row pointers */
 	if (!vis)
