@@ -35,13 +35,10 @@ int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
 
 	if (!ok(x, y, rows, cols))				/* check bounds */
 		return (0);
-
 	if (map[y][x] != '0' || vis[y][x])		/* check if cell is valid */
 		return (0);
-
 	printf("Checking coordinates [%d, %d]\n", x, y);
 	vis[y][x] = 1;							/* mark as visited */
-
 	if (x == tx && y == ty)					/* check if target is reached */
 	{
 		pt = malloc(sizeof(*pt));
