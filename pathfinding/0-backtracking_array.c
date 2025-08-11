@@ -54,10 +54,8 @@ int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
 			free(pt);
 			return (0);
 		}
-
 		return (1);							/* target found */
 	}
-
 	/* explore neighbors in all four directions */
 	if (dfs(map, rows, cols, x + 1, y, tx, ty, vis, q) ||
 		dfs(map, rows, cols, x, y + 1, tx, ty, vis, q) ||
@@ -76,7 +74,6 @@ int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
 		}
 		return (1);
 	}
-
 	return (0);								/* target not found */
 }
 
