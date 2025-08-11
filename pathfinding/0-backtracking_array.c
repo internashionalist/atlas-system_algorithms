@@ -1,5 +1,4 @@
 #include "pathfinding.h"
-#include "pathfinding.h"
 
 /**
  * ok -		checks if coordinates are within bounds
@@ -32,7 +31,13 @@ int push_point(queue_t *q, int x, int y)
 	pt->x = x;								/* set x coordinate */
 	pt->y = y;								/* set y coordinate */
 
-	return queue_push_front(q, pt) != NULL;	/* push point to queue */
+	if (!queue_push_front(q, pt))			/* push to queue */
+	{
+		free(pt);
+		return 0;
+	}
+
+	return (1);								/* success */
 }
 
 /**
@@ -64,7 +69,7 @@ int dfs_dirs(
 		return 1;
 
 	/* no valid neighbors found */
-	return 0;
+	return (0);
 }
 
 /**
@@ -100,7 +105,10 @@ int dfs(char **map, int rows, int cols, int x, int y, int tx, int ty,
 	if (!dfs_dirs(map, rows, cols, x, y, tx, ty, vis, q))	/* neighbors */
 		return 0;
 
-	return push_point(q, x, y);				/* push current point to queue */
+	if (!push_point(q, x, y))					/* push current point */
+		return 0;
+
+	return (1);									/* success */
 }
 
 /**
@@ -128,7 +136,7 @@ char **alloc_vis(int rows, int cols)
 		}
 	}
 
-	return vis;									/* return allocated array */
+	return (vis);									/* return allocated array */
 }
 
 /**
@@ -145,6 +153,7 @@ void free_vis(char **vis, int rows)
 
 	for (r = 0; r < rows; r++)					/* free each row */
 		free(vis[r]);
+
 	free(vis);									/* free the array */
 }
 
@@ -186,5 +195,5 @@ queue_t *backtracking_array(char **map, int rows, int cols,
 	}
 
 	free_vis(vis, rows);
-	return q;									/* return the queue */
+	return (q);									/* return the queue */
 }

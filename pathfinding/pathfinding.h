@@ -45,4 +45,4 @@ queue_t *backtracking_graph(
 queue_t *dijkstra_graph(
 	graph_t *graph, vertex_t const *start, vertex_t const *target);
 
-#endif // PATHFINDING_H
+#endif /* PATHFINDING_H */
