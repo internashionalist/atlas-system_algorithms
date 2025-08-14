@@ -165,10 +165,7 @@ queue_t *dijkstra_graph(graph_t *graph, vertex_t const *start,
 	dist[start->index] = 0;						/* start dist to 0 */
 	run_dijkstra(vmap, n, start, target, dist, parent, used);	/* RUN IT */
 	if (!used[target->index] || !build_path(q, vmap, parent, target->index))
-	{
-		queue_delete(q);						/* if target not reached */
-		q = NULL;								/* or path build fails */
-	}
+		queue_delete(q), q = NULL;	/* if target not reached or path fails */
 	free(vmap);
 	free(dist);
 	free(parent);
