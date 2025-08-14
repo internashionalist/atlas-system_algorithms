@@ -141,7 +141,6 @@ queue_t *dijkstra_graph(graph_t *graph, vertex_t const *start,
 
 	if (!graph || !start || !target)			/* input check */
 		return (NULL);
-
 	n = graph->nb_vertices;						/* get number of vertices */
 	q = queue_create();							/* create result queue */
 	vmap = malloc(sizeof(*vmap) * n);			/* create vertex map */
@@ -158,7 +157,6 @@ queue_t *dijkstra_graph(graph_t *graph, vertex_t const *start,
 		free(used);
 		return (NULL);
 	}
-
 	for (v = graph->vertices; v; v = v->next)	/* create vertex map */
 		vmap[v->index] = v;
 	for (i = 0; i < n; i++)						/* initialize arrays */
@@ -167,9 +165,7 @@ queue_t *dijkstra_graph(graph_t *graph, vertex_t const *start,
 		parent[i] = -1;
 	}
 	dist[start->index] = 0;						/* start dist to 0 */
-
 	run_dijkstra(vmap, n, start, target, dist, parent, used);	/* RUN IT */
-
 	if (!used[target->index])					/* if target not reached */
 	{
 		queue_delete(q);
@@ -180,7 +176,6 @@ queue_t *dijkstra_graph(graph_t *graph, vertex_t const *start,
 		queue_delete(q);
 		q = NULL;
 	}
-
 	free(vmap);
 	free(dist);
 	free(parent);
