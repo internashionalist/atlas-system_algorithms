@@ -149,18 +149,16 @@ queue_t *dijkstra_graph(graph_t *graph, vertex_t const *start,
 	used = calloc(n, sizeof(*used));			/* create used array */
 	if (!q || !vmap || !dist || !parent || !used)
 	{
-		if (q)
-			queue_delete(q);
+		queue_delete(q);
 		free(vmap);
 		free(dist);
 		free(parent);
 		free(used);
 		return (NULL);
 	}
-	for (v = graph->vertices; v; v = v->next)	/* create vertex map */
-		vmap[v->index] = v;
-	for (i = 0; i < n; i++)						/* initialize arrays */
+	for (v = graph->vertices, i = 0; i < n; v = v->next, i++)	/* vert map */
 	{
+		vmap[i] = v;
 		dist[i] = ULONG_MAX;
 		parent[i] = -1;
 	}
