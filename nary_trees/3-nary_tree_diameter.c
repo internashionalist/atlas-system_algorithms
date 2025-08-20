@@ -75,5 +75,5 @@ size_t nary_tree_diameter(nary_tree_t const *root)
 	else if (max1)							/* if only first max found */
 		return (max1 + 1);					/* return first max + 1 */
 
-	return (0);								/* no max found (empty tree) */
+	return (1);								/* tree with only root */
 }
