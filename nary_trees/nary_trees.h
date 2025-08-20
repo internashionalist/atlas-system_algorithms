@@ -36,6 +36,9 @@ void nary_tree_delete(
 /* TASK 2 */
 size_t nary_tree_traverse(
 	nary_tree_t const *, void (*)(nary_tree_t const *, size_t));
+size_t traverse_helper(
+	nary_tree_t const *node,
+	void (*action)(nary_tree_t const *node, size_t depth), size_t depth);
 
 /* TASK 3 */
 size_t nary_tree_diameter(
