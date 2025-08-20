@@ -43,9 +43,13 @@ size_t traverse_helper(
 /* TASK 3 */
 size_t nary_tree_diameter(
 	nary_tree_t const *);
+size_t subtree_depth(
+	nary_tree_t const *node);
+size_t subtree_height(
+	nary_tree_t const *node);
 
 /* TASK 4 */
 int path_exists(
-	nary_tree_t const *, char const * const *);
+	nary_tree_t const *, char const *const *);
 
 #endif /* nary_trees_h */
