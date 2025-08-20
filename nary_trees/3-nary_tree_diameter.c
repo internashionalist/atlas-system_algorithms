@@ -8,22 +8,21 @@
  */
 size_t subtree_depth(nary_tree_t const *node)
 {
-	size_t child_d, next_d = 0, max_d;			/* child, next, max depths */
+	size_t best = 1;							/* at least this node */
+	size_t height;									/* height of child subtree */
+	nary_tree_t const *child;					/* current child */
 
-	if (node == NULL)							/* NULL check */
-		return (0);
+	child = node->children;						/* iterate children list */
+	while (child)
+	{
+		height = subtree_depth(child);				/* child subtree height */
 
-	child_d = subtree_depth(node->children);	/* depth via first child */
-	if (node->children)							/* if child exists */
-		child_d += 1;							/* include this node */
+		if (height + 1 > best)						/* path via this child */
+			best = height + 1;
+		child = child->next;					/* move to next sibling */
+	}
 
-	next_d = subtree_depth(node->next);			/* depth via next sibling */
-
-	max_d = child_d;							/* max depth so far */
-	if (next_d > max_d)							/* if next depth is greater */
-		max_d = next_d;							/* update max */
-
-	return (max_d);								/* return max depth */
+	return (best);								/* return max depth */
 }
 
 /*
@@ -37,7 +36,7 @@ size_t subtree_height(nary_tree_t const *node)
 	if (node == NULL)
 		return (0);
 
-	return (subtree_depth(node->children) + 1);	/* height = depth + 1 */
+	return (subtree_depth(node));
 }
 
 /**
@@ -71,7 +70,7 @@ size_t nary_tree_diameter(nary_tree_t const *root)
 	}
 
 	if (max1 && max2)						/* if both max's found */
-		return (max1 + max2 + 2);			/* return their sum + 2 */
+		return (max1 + max2 + 1);			/* return their sum + 1 */
 	else if (max1)							/* if only first max found */
 		return (max1 + 1);					/* return first max + 1 */
 
