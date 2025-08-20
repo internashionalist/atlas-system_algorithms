@@ -1,6 +1,6 @@
 #include "nary_trees.h"
 
-/*
+/**
  * subtree_depth -	computes the depth of the subtree
  * @node:			current position in the N-ary tree
  *
@@ -25,7 +25,7 @@ size_t subtree_depth(nary_tree_t const *node)
 	return (best);								/* return max depth */
 }
 
-/*
+/**
  * subtree_height -		wrapper that computes the height of the subtree
  * @node:				current position in the N-ary tree
  *
